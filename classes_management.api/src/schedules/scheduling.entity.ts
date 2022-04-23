@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import { User } from 'src/auth/user.entity';
 import {
   Entity,
@@ -10,12 +11,14 @@ import {
 @Entity()
 export class Scheduling {
   @PrimaryColumn({ name: 'id_student' })
+  @Exclude({ toPlainOnly: true })
   @ManyToOne((_type) => User, (user) => user.id, {
     eager: false,
   })
   @JoinColumn({ name: 'id_student' })
   idStudent: string;
   @PrimaryColumn({ name: 'id_professor' })
+  @Exclude({ toPlainOnly: true })
   @ManyToOne((_type) => User, (user) => user.id, {
     eager: false,
   })
