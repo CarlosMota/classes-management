@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 
@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class LoginComponent implements OnInit {
   userName = '';
   password = '';
+  loginMessage = '';
 
   constructor(
     private readonly authService: AuthService,
@@ -19,12 +20,14 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   signIn() {
-    console.log(this.userName);
-    this.router.navigate(['scheduling']);
-    // this.authService.signIn(this.userName, this.password).subscribe({
-    //   next: () => this.router.navigate(['scheduling']),
-    //   error: (e) => console.error(e),
-    //   complete: () => console.log('complete'),
-    // });
+    this.authService.signIn(this.userName, this.password).subscribe({
+      next: () => {
+        this.loginMessage = '';
+        this.router.navigate(['scheduling']);
+      },
+      error: (e) =>
+        (this.loginMessage = 'Login Inválido, por favor, tente novamente'),
+      complete: () => console.log('complete'),
+    });
   }
 }

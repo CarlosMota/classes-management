@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { UserService } from './user/user.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -12,12 +13,12 @@ export class AuthService {
     private readonly userService: UserService
   ) {}
 
-  signIn(userName: string, password: string): Observable<HttpResponse<any>> {
+  signIn(username: string, password: string): Observable<HttpResponse<any>> {
     return this.httpclient
       .post(
-        'http://localhost:3000/auth/signin',
+        environment.apiBaseUrl + '/auth/signin',
         {
-          userName: userName,
+          username: username,
           password: password,
         },
         {
