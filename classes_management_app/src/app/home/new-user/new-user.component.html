@@ -1,0 +1,50 @@
+<h4 class="text-center">Register your account</h4>
+
+<form class="form mt-4" [formGroup]="newUserForm" (submit)="signUp()">
+  <div class="form-group">
+    <input type="text" placeholder="Email" class="form-control" formControlName="email">
+    <app-message-label *ngIf="newUserForm.get('email')?.errors?.['required'] && newUserForm.get('email')?.touched"
+      mensagem="Email is required">
+    </app-message-label>
+    <app-message-label *ngIf="newUserForm.get('email')?.errors?.['email'] && newUserForm.get('email')?.touched"
+      mensagem="Email Invalid">
+    </app-message-label>
+  </div>
+  <div class="form-group">
+    <input type="text" placeholder="First name" class="form-control" formControlName="firstName">
+    <app-message-label *ngIf="newUserForm.get('firstName')?.errors && newUserForm.get('firstName')?.touched"
+      mensagem="First Name is required">
+    </app-message-label>
+  </div>
+  <div class="form-group">
+    <input type="text" placeholder="Last name" class="form-control" formControlName="lastName">
+    <app-message-label *ngIf="newUserForm.get('lastName')?.errors && newUserForm.get('lastName')?.touched"
+      mensagem="Last Name is required">
+    </app-message-label>
+  </div>
+  <div class="form-group">
+    <select placeholder="Last name" class="form-control" formControlName="userType">
+      <option value="PROFESSOR">PROFESSOR</option>
+      <option value="STUDENT">STUDENT</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <input type="text" placeholder="Username" class="form-control" formControlName="username">
+    <app-message-label *ngIf="newUserForm.get('username')?.errors?.['required'] && newUserForm.get('username')?.touched"
+      mensagem="The username is required">
+    </app-message-label>
+    <app-message-label
+      *ngIf="newUserForm.get('username')?.errors?.['userExist'] && newUserForm.get('username')?.touched"
+      mensagem="The user already exist">
+    </app-message-label>
+  </div>
+  <div class="form-group">
+    <input type="password" placeholder="password" class="form-control" formControlName="password">
+  </div>
+  <app-message-label *ngIf="newUserForm.get('password')?.errors && newUserForm.get('password')?.touched"
+    mensagem="Password is required">
+  </app-message-label>
+  <button class="btn btn-primary btn-block">Register</button>
+</form>
+
+<p>Have an account? <a [routerLink]="['']"> Sign In</a></p>
