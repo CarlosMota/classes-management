@@ -1,0 +1,13 @@
+<h4 class="text-center">Login</h4>
+
+<form class="form mt-4" (ngSubmit)="signIn()" #loginForm="ngForm">
+  <div class="form-group">
+    <input class="form-control" type="text" placeholder="username" [(ngModel)]="userName" #fieldUser="ngModel"
+      name="usuario" required>
+  </div>
+  <div class="form-group">
+    <input class="form-control" type="password" placeholder="senha" [(ngModel)]="password" #fieldPassword="ngModel"
+      name="password" required>
+  </div>
+  <button type="submit" class="btn btn-primary btn-block" [disabled]="loginForm.invalid">Login</button>
+</form>
