@@ -42,3 +42,4 @@ lerna-debug.log*
 #dabase
 /db-data
 classes_management_app/.vscode
+classes_management_app/.angular
