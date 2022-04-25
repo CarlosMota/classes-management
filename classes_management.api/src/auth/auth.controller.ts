@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, Response, HttpCode } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthCredentialDto } from './dto/auth-credentials.dto';
 import { AuthCreateDto } from './dto/create-user.dto';
@@ -13,9 +13,12 @@ export class AuthController {
   }
 
   @Post('/signin')
-  signIn(
+  @HttpCode(200)
+  async signIn(
     @Body() authCredentialDto: AuthCredentialDto,
-  ): Promise<{ accessToken: string }> {
-    return this.authService.signIn(authCredentialDto);
+    @Response() res,
+  ): Promise<void> {
+    const { accessToken } = await this.authService.signIn(authCredentialDto);
+    res.set({ 'x-access-token': accessToken }).json({});
   }
 }
