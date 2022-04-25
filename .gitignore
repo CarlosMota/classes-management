@@ -1,6 +1,8 @@
 # compiled output
 /classes_management.api/dist
 /classes_management.api/node_modules
+/classes_management_app/node_modules
+/classes_management_app/dist
 
 # Logs
 logs
@@ -39,3 +41,4 @@ lerna-debug.log*
 
 #dabase
 /db-data
+classes_management_app/.vscode
