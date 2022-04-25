@@ -21,4 +21,9 @@ export class AuthController {
     const { accessToken } = await this.authService.signIn(authCredentialDto);
     res.set({ 'x-access-token': accessToken }).json({});
   }
+
+  @Post('/checkUserName')
+  checkUserName(@Body() userName: string): Promise<string> {
+    return this.authService.getUserName(userName);
+  }
 }

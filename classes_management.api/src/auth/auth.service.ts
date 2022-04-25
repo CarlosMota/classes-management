@@ -62,4 +62,16 @@ export class AuthService {
       throw new UnauthorizedException('Please check your login');
     }
   }
+
+  async getUserName(username: string): Promise<string> {
+    const found = await this.repository.findOne({
+      where: { username },
+    });
+
+    if (!found) {
+      return '';
+    }
+
+    return found.username;
+  }
 }
