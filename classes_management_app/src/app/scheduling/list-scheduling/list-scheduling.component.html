@@ -1,1 +1,7 @@
-<p>list-scheduling works!</p>
+<div class="row">
+
+</div>
+
+<div *ngIf="schedules$ | async as schedules">
+  <app-table-scheduling [schedules]="schedules"></app-table-scheduling>
+</div>

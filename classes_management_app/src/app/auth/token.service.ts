@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 const KEY = 'token';
@@ -6,10 +7,21 @@ const KEY = 'token';
   providedIn: 'root',
 })
 export class TokenService {
-  constructor() {}
+  constructor(private readonly http: HttpClient) {}
 
   returnToken() {
     return localStorage.getItem(KEY) ?? '';
+  }
+
+  returnBearerToken() {
+    const token = this.returnToken();
+    /**{
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    } */
+    return new HttpHeaders()
+      .append('Content-Type', 'application/json')
+      .append('Authorization', `Bearer ${token}`);
   }
 
   saveToken(token: string) {
