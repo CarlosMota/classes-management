@@ -15,10 +15,7 @@ export class TokenService {
 
   returnBearerToken() {
     const token = this.returnToken();
-    /**{
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    } */
+
     return new HttpHeaders()
       .append('Content-Type', 'application/json')
       .append('Authorization', `Bearer ${token}`);
